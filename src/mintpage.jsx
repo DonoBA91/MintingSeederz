@@ -1,8 +1,9 @@
-import React, { useState,useEffect, useRef } from 'react';
+import React, { useState} from 'react';
 import Web3 from 'web3';
 import './cssmintpage.css';
 import picsbn from './images/picsbn.mp4';
 import etherscanlogo from './images/contrato.png';
+import space from './images/space.png';
 import twitter from './images/twitter.svg';
 import openSea from './images/opensea.svg';
 import seederz from './images/seederz.png';
@@ -916,37 +917,33 @@ function MintForm() {
         <button id="mintButton" className="mintButton" onClick={handleMint}>Mint</button>
     );
     }
-
+/*
     function StarryBackground() {
       const canvasRef = useRef(null);
-      let canvas;
-      let context;
-      let screenH;
-      let screenW;
-      let diameter;
+      const screenHRef = useRef(1080);
+      const screenWRef = useRef(1920);
+      const diameterRef = useRef(Math.max(screenHRef.current, screenWRef.current));
+      const contextRef = useRef(null);
       const stars = [];
       const fps = 55;
       const numStars = 100;
     
       useEffect(() => {
-        // Calculate the screen size
-        screenH = 1080;
-        screenW = 1920;
-        diameter = Math.max(screenH, screenW);
-    
         // Get the canvas
-        canvas = canvasRef.current;
+        canvasRef.current = document.getElementById("space");
     
         // Fill out the canvas
-        canvas.setAttribute('height', diameter);
-        canvas.setAttribute('width', diameter);
-        context = canvas.getContext('2d');
+        canvasRef.current.setAttribute("height", diameterRef.current);
+        canvasRef.current.setAttribute("width", diameterRef.current);
+    
+        // Get the context
+        contextRef.current = canvasRef.current.getContext("2d");
     
         // Create all the stars
         for (let i = 0; i < numStars; i++) {
-          const x = Math.round(Math.random() * diameter);
-          const y = Math.round(Math.random() * diameter);
-          const radius  = 0.1 + Math.random() * 0.5;
+          const x = Math.round(Math.random() * diameterRef.current);
+          const y = Math.round(Math.random() * diameterRef.current);
+          const radius = 0.1 + Math.random() * 0.5;
           const opacity = Math.random();
     
           // Create a new star and draw
@@ -963,24 +960,15 @@ function MintForm() {
         return () => clearInterval(interval);
       }, []);
     
-      /**
-       * Animate the canvas
-       */
+
       function animate() {
-        context.clearRect(0, 0, diameter, diameter);
+        contextRef.current.clearRect(0, 0, diameterRef.current, diameterRef.current);
         stars.forEach((star) => {
-          star.draw(context);
+          star.draw(contextRef.current);
         });
       }
     
-      /**
-       * Star
-       *
-       * @param int x
-       * @param int y
-       * @param int length
-       * @param opacity
-       */
+
       function Star(x, y, radius, opacity) {
         this.x = parseInt(x);
         this.y = parseInt(y);
@@ -989,45 +977,34 @@ function MintForm() {
         this.factor = 1;
         this.increment = Math.random() * 0.035;
       }
-    
-      /**
-       * Draw a star
-       *
-       * This function draws a start.
-       * You need to give the contaxt as a parameter
-       *
-       * @param context
-       */
+
       Star.prototype.draw = function () {
         // Change the opacity
         if (this.opacity > 1) {
           this.factor = -1;
         } else if (this.opacity <= 0) {
           this.factor = 1;
-    
-          // this.x = Math.round(Math.random() * screenW);
-          // this.y = Math.round(Math.random() * screenH);
         }
     
         this.opacity += this.increment * this.factor;
     
-        context.beginPath();
-        context.arc(this.x, this.y, 1.1, 0, 2 * Math.PI);
-        context.strokeStyle = `rgba(255, 255, 255, ${this.opacity})`;
-        context.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
-        context.stroke();
-        context.shadowBlur = 25;
-        context.shadowColor = '#ffffff';
-        context.fill();
+        contextRef.current.beginPath();
+        contextRef.current.arc(this.x, this.y, 1.1, 0, 2 * Math.PI);
+        contextRef.current.strokeStyle = `rgba(255, 255, 255, ${this.opacity})`;
+        contextRef.current.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+        contextRef.current.stroke();
+        contextRef.current.shadowBlur = 25;
+        contextRef.current.shadowColor = "#ffffff";
+        contextRef.current.fill();
       };
-    
       return <canvas ref={canvasRef} id="space"></canvas>;
+      
     }
-
+*/
 
     return (
     <div id="contenedroGeneral">
-        <div className="contenedorspace"><StarryBackground/></div>
+        <div className="contenedorspace"><img src={space} alt="space" id='space'/></div>
     <div className="headPage">
         <ul className="logo">
             <li>Seederz</li>
