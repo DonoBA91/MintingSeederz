@@ -777,14 +777,13 @@ function MintForm() {
         
     }
     
-    let globalAccountAddress = "";
+
 
       const handleConnectWallet = async () => {
         if (window.ethereum) {
           try {
             await window.ethereum.request({ method: 'eth_requestAccounts' });
             const accountAddress = await window.ethereum.request({ method: 'eth_accounts' });
-            globalAccountAddress = accountAddress[0];
             setAccountAddress(accountAddress[0]);
             const connectBtn = document.getElementById("connectBtn");
             setIsWalletConnected(true);
